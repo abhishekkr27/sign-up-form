@@ -1,0 +1,27 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+
+  .form-control {
+    background-color: #1F2933 !important;
+    color: #AAB7BF !important;
+}
+  
+  .main-div {
+    margin: 50px;
+    color: #C9D1D8;
+    font-size: 15px;
+  }
+  
+  .submit_btn {
+    margin-top: 20px;
+  }
+  
+  h5 {
+    margin-bottom: 20px;
+  }
+  
+  input {
+    margin: 10px 0 10px;
+  }
