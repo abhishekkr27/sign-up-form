@@ -1,0 +1,92 @@
+*{
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.App-container {
+  width: 100vw !important;
+  height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  justify-content: center;
+  background-color: #1F2933;
+}
+
+.card {
+  width: 20rem !important;
+  background-color: #1F2933;
+  border-radius: 1rem;
+  border: 2px solid #F6F6F6;
+  overflow: hidden;
+  margin: 0 0.5rem !important;
+}
+
+.card-header{
+  border-bottom: 1px solid #F6F6F6;
+  padding: 1rem 1.2rem !important;
+  background-color: #1F2933 !important;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #D6DBE1;
+  margin: 0;
+}
+
+.label{
+  font-size: 1rem;
+  font-weight: 550;
+  color: #D6DBE1 !important;
+  margin: 0 0 0.3rem 0;
+  margin-top: 1rem;
+}
+
+.card-body{
+  padding: 0rem 1.2rem 1rem 1.2rem !important;
+  background-color: #1F2933;
+}
+
+.input {
+  width: 100%;
+  font-size: 0.8rem;
+  font-weight: 550;
+  letter-spacing: 0.08rem;
+  padding: 0.6rem 0.8rem;
+  color: #D6DBE1;
+  background-color: #2D4051;
+  border-radius: 0.2rem;
+  border: 1px solid #2D4051;
+}
+
+::placeholder {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #e8e8e8;
+}
+
+.input:focus{
+  outline: none;
+}
+
+.btn{
+  width: 100%;
+  display: inline !important;
+  background-color: #C18E6F !important;
+  border-radius: 0.7rem !important;
+  padding: 10px 20px !important;
+  border: none !important;
+  color: #352B2A !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  margin-top: 1rem !important;
+}
+
+.error-message{
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #efd5aa;
+  margin-top: 0.2rem;
+}

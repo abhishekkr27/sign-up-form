@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import "./App.css";
 
 class PasswordValidationForm extends React.Component {
   constructor() {
@@ -29,7 +29,8 @@ class PasswordValidationForm extends React.Component {
       console.log(this.state);
 
       let input = {};
-      
+
+      input["email"] = "";
       input["password"] = "";
       input["confirm_password"] = "";
       this.setState({ input: input });
@@ -41,11 +42,19 @@ class PasswordValidationForm extends React.Component {
   validate() {
     let input = this.state.input;
     let errors = {};
-    let isValid = true;   
+    let isValid = true;
 
     if (!input["email"]) {
       isValid = false;
       errors["email"] = "Please enter your email";
+    }
+
+    if (typeof input["email"] !== "undefined") {
+      var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+      if (!pattern.test(input["email"])) {
+        isValid = false;
+        errors["email"] = "Please enter valid email address";
+      }
     }
 
     if (!input["password"]) {
@@ -62,6 +71,46 @@ class PasswordValidationForm extends React.Component {
       if (input["password"].length < 6) {
         isValid = false;
         errors["password"] = "Please add at least 6 charachter";
+      }
+    }
+
+    if (typeof input["password"] !== "undefined") {
+      var pattern2 = new RegExp(/[a-z]/.test("password"));
+      if (!pattern2.test(input["password"])) {
+        isValid = false;
+        errors["password"] = "Please add at least 1 lowercase letter";
+      }
+    }
+
+    if (typeof input["password"] !== "undefined") {
+      var pattern3 = new RegExp(/[A-Z]/.test("password"));
+      if (!pattern3.test(input["password"])) {
+        isValid = false;
+        errors["password"] = "Please add at least 1 uppercase letter";
+      }
+    }
+
+    if (typeof input["password"] !== "undefined") {
+      var pattern4 = new RegExp(/[0-9]/.test("password"));
+      if (!pattern4.test(input["password"])) {
+        isValid = false;
+        errors["password"] = "Please add at least 1 number";
+      }
+    }
+
+    if (typeof input["password"] !== "undefined") {
+      var pattern5 = new RegExp(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test("password"));
+      if (!pattern5.test(input["password"])) {
+        isValid = false;
+        errors["password"] = "Please add at least 1 special character";
+      }
+    }
+
+    if (typeof input["password"] !== "undefined") {
+      var pattern6 = new RegExp(!/(.)\1{1,}/.test("password"));
+      if (!pattern6.test(input["password"])) {
+        isValid = false;
+        errors["password"] = "Must not contain any repeating characters";
       }
     }
 
@@ -84,65 +133,59 @@ class PasswordValidationForm extends React.Component {
 
   render() {
     return (
-      <div class="main-div">
-        <h5>
-        Registration Page
-        </h5>
-        <form onSubmit={this.handleSubmit}>         
 
-        <div class="form-group">
-            <label for="password">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={this.state.input.email}
-              onChange={this.handleChange}
-              class="form-control"
-              placeholder="Enter email"
-              id="email"
-            />
-
-            <div className="text-danger">{this.state.errors.email}</div>
+      <div className="App-container">
+        <div className="card">
+          <div className="card-header">
+            <h4 className="title">Registration Page</h4>
           </div>
 
-          <div class="form-group">
-            <label for="password">New Password</label>
-            <input
-              type="password"
-              name="password"
-              value={this.state.input.password}
-              onChange={this.handleChange}
-              class="form-control"
-              placeholder="Enter password"
-              id="password"
-            />
+          <div className="card-body">
+            <form onSubmit={this.handleSubmit}>
 
-            <div className="text-danger">{this.state.errors.password}</div>
+
+              <p className="label">Email</p>
+              <input
+                type="text"
+                name="email"
+                value={this.state.input.email}
+                onChange={this.handleChange}
+                className="input"
+                placeholder="Enter email"
+                id="email"
+              />
+              <p className="error-message">{this.state.errors.email}</p>
+
+
+              <p className="label">New Password</p>
+              <input
+                type="password"
+                name="password"
+                value={this.state.input.password}
+                onChange={this.handleChange}
+                className="input"
+                placeholder="Enter password"
+                id="password"
+              />
+              <p className="error-message">{this.state.errors.password}</p>
+
+
+              <p className="label">Re-enter New Password</p>
+              <input
+                type="password"
+                name="confirm_password"
+                value={this.state.input.confirm_password}
+                onChange={this.handleChange}
+                className="input"
+                placeholder="Enter confirm password"
+                id="confirm_password"
+              />
+              <p className="error-message">{this.state.errors.confirm_password}</p>
+
+              <input type="submit" className="btn" value="Create account" />
+            </form>
           </div>
-
-          <div class="form-group">
-            <label for="password">Re-enter New Password:</label>
-            <input
-              type="password"
-              name="confirm_password"
-              value={this.state.input.confirm_password}
-              onChange={this.handleChange}
-              class="form-control"
-              placeholder="Enter confirm password"
-              id="confirm_password"
-            />
-
-            <div className="text-danger">
-              {this.state.errors.confirm_password}
-            </div>
-          </div>
-
-          <input
-            type="submit"
-            value="Create account"
-            class="btn btn-success submit_btn"
-          />
-        </form>
+        </div>
       </div>
     );
   }
