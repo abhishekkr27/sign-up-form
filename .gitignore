@@ -21,3 +21,15 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/* eslint regexp/no-useless-escape: "error" */
+
+/* ✓ GOOD */
+var foo = /\[/
+var foo = /\\/
+
+/* ✗ BAD */
+var foo = /a/
+var foo = /\x7/
+var foo = /\u41/
+var foo = /\u{[41]}/
